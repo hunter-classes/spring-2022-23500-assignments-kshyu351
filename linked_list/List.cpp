@@ -17,7 +17,6 @@ void List::insert(std::string data) {
 
 
     //insert the new node 
-    //head->setNext(new_node); 
     new_node->setNext(head); 
     head=new_node; 
 }
@@ -27,6 +26,7 @@ std::string List::toString() {
 
     Node *walker = head; 
     std::string s = ""; 
+    std::cout << walker << "\n";
     while (walker != nullptr) { 
         s = s+ walker->getData() + "-->"; 
         walker = walker->getNext(); 
@@ -37,22 +37,34 @@ std::string List::toString() {
 
 void List::locate(int index, Node *n) { 
 
-    //locates the node referred to by the index 
-    Node *walker = head; 
-    for (int i = 0; i < index; i++) { 
-        walker = walker->getNext(); 
+    //how come locate(0,n) gives error ? 
+    if (index == 0) { 
+        std::cout << head << ":" << n << "\n";
+        n->setNext(head); 
+        head = n; 
     }
+    else { 
+        //locates the node referred to by the index 
+        Node *walker = head; 
+        for (int i = 0; i < index; i++) { 
+            walker = walker->getNext(); 
+        }
 
-    //creates new node to store the earlier heads that were inserted first 
-    Node *head2 = walker->getNext();
+        //creates new node to store the earlier heads that were inserted first 
+        Node *head2 = walker->getNext();
 
-    //inserts the new node 
-    walker->setNext(n);
+        //inserts the new node 
+        walker->setNext(n);
 
-    //puts in old heads in new node 
-    n->setNext(head2);
+        //puts in old heads in new node 
+        n->setNext(head2);
+    }
 }
 
+
+    
+
+   
 void List::remove(int index) { 
      //locates the node referred to by the index 
 

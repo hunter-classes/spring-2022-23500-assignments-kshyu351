@@ -52,6 +52,14 @@ int main() {
     std::cout << l1->toString() << "\n"; 
     std::cout << std::endl; 
 
+    Node *n3 = new Node("new_node3"); 
+    l1->locate(0,n3);
+      std::cout << "Inserting a new node in specified location: " << std::endl; 
+    std::cout << l1->toString() << "\n"; 
+    std::cout << "ZZZ\n";
+    std::cout << std::endl; 
+
+
    
 
 
