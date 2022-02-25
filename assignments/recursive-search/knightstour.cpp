@@ -50,12 +50,12 @@ void solve(std::string board[], int lines, int row, int col, bool &solved){
   usleep(80000);
   print_board(board,lines);
 
-   
+    sequence++; 
   // solutions[solutionsRow][solutionsCol] = 5*(row-2) + col-1; 
 //   if(row > 6 || row < -1 || col > 6 || col < -1) {
     solutions[row-2][col-2] = sequence;
  // }
-  sequence++; 
+ // sequence++; 
   // int temp = 5*(row-2) + col-1;
   // std::cout << temp << std::endl; 
 
@@ -99,7 +99,7 @@ int main() {
   std::cout << "[2J;\n";
   print_board(board,lines);
   bool solved = false;
-  solve(board,lines,2,2,solved);
+  solve(board,lines,3,3,solved);
   print_board(board,lines);
   
 
