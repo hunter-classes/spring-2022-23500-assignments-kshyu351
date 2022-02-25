@@ -63,49 +63,30 @@ void solve(std::string board[], int lines, int row, int col, bool &solved){
     
   
 
-//   //1st way 
-//   if (!solved) solve(board,lines,row-2,col+1,solved);
- 
-//   //2nd 
-//   if (!solved) solve(board,lines,row-1,col+2,solved);
- 
-//   //3rd
-//   if (!solved) solve(board,lines,row+1,col+2,solved);
-  
-//   //4th
-//   if (!solved) solve(board,lines,row+2,col+1,solved);
- 
-//   //5th 
-//   if (!solved) solve(board,lines,row+2,col-1,solved);
- 
-//   //6th
-//   if (!solved) solve(board,lines,row+1,col-2,solved);
-  
-//   //7th
-//   if (!solved) solve(board,lines,row-1,col-2,solved);
-
-//   //8th
-//   if (!solved) solve(board,lines,row-2,col-1,solved);
-
   //1st way 
-  if (!solved) solve(board,lines,row+2,col+1,solved);
+  if (!solved) solve(board,lines,row-2,col+1,solved);
+ 
   //2nd 
-  if (!solved) solve(board,lines,row+2,col-1,solved);
+  if (!solved) solve(board,lines,row-1,col+2,solved);
+ 
   //3rd
   if (!solved) solve(board,lines,row+1,col+2,solved);
+  
   //4th
-  if (!solved) solve(board,lines,row+1,col-2,solved);
+  if (!solved) solve(board,lines,row+2,col+1,solved);
+ 
   //5th 
-  if (!solved) solve(board,lines,row-2,col-1,solved);
+  if (!solved) solve(board,lines,row+2,col-1,solved);
+ 
   //6th
-  if (!solved) solve(board,lines,row-2,col+1,solved);
+  if (!solved) solve(board,lines,row+1,col-2,solved);
+  
   //7th
   if (!solved) solve(board,lines,row-1,col-2,solved);
-  //8th
-  if (!solved) solve(board,lines,row-1,col+2,solved);
 
-  if (!solved) board[row][col]=visited;
-}
+  //8th
+  if (!solved) solve(board,lines,row-2,col-1,solved);
+
 
 
 int main() {
