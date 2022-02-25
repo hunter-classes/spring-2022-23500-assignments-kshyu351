@@ -36,7 +36,7 @@ void print_board(std::string board[],int lines){
 
 
 void solve(std::string board[], int lines, int row, int col, bool &solved){
-  if (sequence == 26){
+  if (sequence > 25){
     solved = true;
     return;
   }
