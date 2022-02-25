@@ -11,7 +11,7 @@ in C++ versions between Linux and Mac, especially as a student who is a beginner
 Unfortunately, I do not have a Linux machine nor can I carry around one that easily, and I 
 primarily use my Mac for all things school related. 
 
-I hope you understand where I am coming from and keep this in mind when this and future assignments. 
+I hope you understand where I am coming from and keep this in mind when grading this and future assignments. 
 
 Thank you for your time and understanding,
 Kirsten 
