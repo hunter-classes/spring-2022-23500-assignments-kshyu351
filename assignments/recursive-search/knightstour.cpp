@@ -52,7 +52,9 @@ void solve(std::string board[], int lines, int row, int col, bool &solved){
 
    
   // solutions[solutionsRow][solutionsCol] = 5*(row-2) + col-1; 
-  solutions[row-2][col-2] = sequence;
+//   if(row > 6 || row < -1 || col > 6 || col < -1) {
+    solutions[row-2][col-2] = sequence;
+ // }
   sequence++; 
   // int temp = 5*(row-2) + col-1;
   // std::cout << temp << std::endl; 
@@ -111,11 +113,6 @@ int main() {
   std::cout << "Done!\n";
 }
 
-/*
-1   12  7   0   3
-6   0   2   11  8
-0   10  13  4   0
-14  5   9   14  14
-*/
+
 
 
