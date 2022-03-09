@@ -1,3 +1,6 @@
+Dear Mr. Zamansky, 
+
+
 My program runs into a segmentation dump but runs fine on Mac and I tried
 my best trying to figure out what was different/what to change but failed to 
 find the error. 
@@ -8,7 +11,7 @@ in C++ versions between Linux and Mac, especially as a student who is a beginner
 Unfortunately, I do not have a Linux machine nor can I carry around one that easily, and I 
 primarily use my Mac for all things school related. 
 
-I hope you understand where I am coming from and keep this in mind when I run 
-into these types of errors again. 
+I hope you understand where I am coming from and keep this in mind when grading this and future assignments. 
 
-Thank you for your understanding, Mr. Zamansky! 
+Thank you for your time and understanding,
+Kirsten 
