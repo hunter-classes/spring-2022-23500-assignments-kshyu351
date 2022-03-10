@@ -142,60 +142,26 @@ std::vector<int> merge(std::vector<int> left,
 std::vector<int> msort(std::vector<int> v) { 
     std::vector<int> first_half; 
     std::vector<int> second_half; 
-    int half_index = 0; 
+    
+   
+
+    for (int i = 0; i < v.size()/2; i++) { 
+        first_half.push_back(v[i]); 
+    }
+    for (int i = v.size()/2; i < v.size(); i++) { 
+        second_half.push_back(v[i]); 
+    } 
+
 
     if (v.size() < 2) { 
         return v; 
     }
     else { 
         
-        //if v.size() is even 
-        if (v.size() % 2 == 0) { 
-            half_index = (v.size()/2)-1;
-            std::vector<int> first_half; 
-
-            //making 1st half vector 
-            for (int i = 0; i <= half_index; i++) { 
-                first_half.push_back(v[i]);
-            }
-
-            //making 2nd half vector 
-            std::vector<int> second_half; 
-
-             for (int i = half_index+1; i < v.size(); i++) { 
-                second_half.push_back(v[i]);
-            }
-
-            //merge sort first half 
-
-
-            //merge sort second half 
-        }
-
-        else { 
-            //if v.size() is odd 
-            half_index = (v.size()/2);
-
-            //making 1st half vector 
-            for (int i = 0; i <= half_index; i++) { 
-                first_half.push_back(v[i]);
-            }
-
-            //making 2nd half vector 
-             for (int i = half_index+1; i < v.size(); i++) { 
-                second_half.push_back(v[i]);
-            }
-
-
-            //merge sort first half 
-
-
-            //merge sort second half 
-        }    
+        return merge(msort(first_half), msort(second_half));
+        
     }
-
-    //merge both vectors 
-    return merge(first_half, second_half);
+    
 }
 
 int main() { 
@@ -233,6 +199,17 @@ int main() {
     std::cout << "Testing mode func: \n";
     int most_frequent = mode(v); 
     std::cout << most_frequent << std::endl; //should return 6 or 4 
+
+
+    //testing msort 
+    std::cout << "Sorted vector:\n";
+
+    std::vector<int> vv = msort(v);
+ 
+    for (int i = 0; i < vv.size(); i++) { 
+        std::cout << vv[i] << std::endl; 
+    } 
+
 
 
 }
