@@ -1,20 +1,30 @@
 #include <iostream>
-#include "Node.h"
-#include "List.h"
+#include "ONode.h"
+#include "OList.h"
 
 
 int main() { 
 
-  
+    OList *l = new OList(); 
 
+    l->insert(1);
+    l->insert(10);
+    l->insert(4);
+    l->insert(-2);
+    l->insert(2);
 
+    int x = l->get(3); 
+    std::cout << x << std::endl;
+    std::string s = l->toString(); 
+    std::cout << s << std::endl; 
+    bool test = l->contains(-100); 
+    l->remove(2); 
+    std::cout << l->toString() << std::endl;
+    std::cout << l->contains(1)<< std::endl;// true
+    std::cout << l->contains(11)<< std::endl;// false
 
-
-
-
-
-
-
+    l->reverse();
+    std::cout << l->toString() << std::endl;
 
 
 
@@ -69,12 +79,6 @@ int main() {
     // std::cout << l1->toString() << "\n"; 
     // std::cout << "ZZZ\n";
     // std::cout << std::endl; 
-
-
-
-
-   
-
 
 
 }
