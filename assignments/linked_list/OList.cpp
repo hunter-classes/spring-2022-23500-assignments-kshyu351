@@ -117,7 +117,18 @@ void OList::remove(int loc) {
     walker->setNext(head2);
 } 
 
-void OList::reverse() {  //This should “reverse” the list - that is reverse the pointers.   
-    
+void OList::reverse() {  //This should “reverse” the list - that is reverse the pointers. 
 
+    ONode *walker = head->getNext();
+    ONode *reverseWalker = nullptr; 
+    ONode *temp = new ONode(); 
+    
+    while (walker != nullptr) { 
+
+        temp = walker; 
+        walker->setNext(reverseWalker);
+        reverseWalker = temp; 
+        walker = temp->getNext(); 
+
+    }
 }
