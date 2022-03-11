@@ -1,20 +1,20 @@
 #pragma once 
-#include "Node.h"
+#include "ONode.h"
 
 //same as List but should store items in increasing order.
 
 class OList{ 
     private:
-        Node *head; 
+        ONode *head; 
 
 
     public: 
         OList();
         ~OList();
-        void insert(std::string s); //insert a new node with value into the list in its proper location.
+        void insert(int n); //insert a new node with value into the list in its proper location.
         std::string toString(); //return a string representation of the full list.
-        bool contains(value); // returns true if value is in the list, false otherwise.
-        std::string get(loc); //returns the value at loc
-        void remove(loc);  //returns the value at loc
+        bool contains(int n); // returns true if value is in the list, false otherwise.
+        int get(int loc); //returns the value at loc
+        void remove(int loc);  //returns the value at loc
         void reverse(); //This should “reverse” the list - that is reverse the pointers.         
 }; 

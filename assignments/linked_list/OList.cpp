@@ -1,54 +1,63 @@
 #include <iostream> 
 #include "OList.h" 
 
+
 OList::OList() { 
     head = nullptr; 
 }
 
 OList::~OList() { 
-    delete[] head;
+     ONode *trailer;
+    
+ 
+  while(head != nullptr){
+    trailer = head;
+    head = head->getNext();
+    delete trailer;
+  }
+  
 }
 
-OList::void insert(std::string s) { //insert a new node with value into the list in its proper location.
+void OList::insert(int n) { //insert a new node with value into the list in its proper location.
 
-    //how come locate(0,n) gives error ? 
 
-    if (index == 0) { 
-        //what zman wrote in class 
-        //throw std::out_of_range("out of range"); 
-
-        std::cout << head << ":" << n << "\n";
-        n->setNext(head); 
-        head = n; 
-    }
-    else { 
-        //locates the node referred to by the index 
-        Node *walker = head; 
-        for (int i = 0; i < index; i++) { 
-            walker = walker->getNext(); 
+        ONode *walker = head->getNext(); 
+        if (n < walker->getData()) { 
+            ONode *new_ONode = new ONode(n);
+            head->setNext(new_ONode);
+            new_ONode->setNext(walker);
         }
 
-        //creates new node to store the earlier heads that were inserted first 
-        Node *head2 = walker->getNext();
+     
+       while (walker->getNext() != nullptr) { 
 
-        //inserts the new node 
-        walker->setNext(n);
+             if(walker->getData() < n && walker->getNext()->getData() > n) { 
+                  ONode *new_ONode = new ONode();  
 
-        //puts in old heads in new node 
-        n->setNext(head2);
-    }
+                 new_ONode->setData(n);
+                 new_ONode->setNext(walker->getNext()); 
+                 walker->setNext(new_ONode);
+
+             }
+             
+            walker = walker->getNext(); 
+
+        } 
+
+        if(walker->getData() < n) { 
+            walker->setNext(new ONode(n));
+        }
 }
-
 
 
 std::string OList::toString() { //return a string representation of the full list.
 
-  Node *walker = head; 
+  ONode *walker = head; 
     std::string s = ""; 
     std::cout << walker << "\n";
 
     while (walker != nullptr) { 
-        s = s+ walker->getData() + "-->"; 
+        s = s+ std::to_string(walker->getData()) + "-->"; 
         walker = walker->getNext(); 
     }
 
@@ -57,38 +66,40 @@ std::string OList::toString() { //return a string representation of the full lis
 
 } 
 
-bool OList::contains(std::string value) {  // returns true if value is in the list, false otherwise.
+bool OList::contains(int n) {  // returns true if value is in the list, false otherwise.
 
-    Node* temp = head;
-    if(temp != NULL) {
-    while(temp != NULL) {
-        if (temp == value) { 
+    ONode* temp = head;
+    if(temp != nullptr) {
+    while(temp != nullptr) {
+        if (temp->getData() == n) { 
             return true;
         }
         else { 
-            temp = temp->next;
+            temp = temp->getNext();
         }
     }
-    return false; 
-  } 
+  }
+  return false; 
+} 
 
 
-std::string OList::get(loc) {  //returns the value at loc
+int OList::get(int loc) {  //returns the value at loc
 
-    Node *walker = head; 
+    ONode *walker = head; 
 
     for (int i = 0; i < loc-1; i++) { 
         walker = walker->getNext(); 
-        return walker->getData(); 
+        
     } 
+    return walker->getData(); 
 }
 
-void OList::remove(loc) {   
+void OList::remove(int loc) {   
  //locates the node referred to by the index 
-    Node *walker = head; 
+    ONode *walker = head; 
 
     if(loc == 0) { 
-    Node *head2 = head; 
+    ONode *head2 = head; 
     delete head2; 
     head = head->getNext();
     }
@@ -97,7 +108,7 @@ void OList::remove(loc) {
     }
 
     //creates new node to store the earlier heads that were inserted first 
-    Node *head2 = walker->getNext()->getNext();
+    ONode *head2 = walker->getNext()->getNext();
 
     //deletes nodes from the index 
     delete walker->getNext(); 
@@ -108,4 +119,5 @@ void OList::remove(loc) {
 
 void OList::reverse() {  //This should “reverse” the list - that is reverse the pointers.   
     
-} 
+
+}
