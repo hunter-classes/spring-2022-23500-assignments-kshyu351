@@ -203,11 +203,10 @@ int main() {
 
     //testing msort 
     std::cout << "Sorted vector:\n";
-
-    std::vector<int> vv = msort(v);
+    std::
  
-    for (int i = 0; i < vv.size(); i++) { 
-        std::cout << vv[i] << std::endl; 
+    for (int i = 0; i < v.size(); i++) { 
+        std::cout << v[i] << std::endl; 
     } 
 
 
