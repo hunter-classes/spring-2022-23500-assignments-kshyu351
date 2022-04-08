@@ -163,6 +163,47 @@ std::vector<int> msort(std::vector<int> v) {
     }
     
 }
+void swap(int* a, int* b) { 
+
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+std::vector<int> qsort2(std::vector<int> list, int low, int high) { 
+
+  if (low < high) { 
+    
+    int pivot = 0; 
+    int partition = 0; 
+    for (int i = 0; i < high-low; i++) { 
+    pivot += list[i]; 
+
+    }
+    pivot = pivot / list.size(); //pivot is average of the list 
+
+    //index of the smallest element of what we found so far 
+    int i = (low - 1); 
+ 
+    for (int j = low; j <= high - 1; j++) {
+    
+        
+        if (list[j] < pivot) { 
+        
+            i++; 
+            swap(&list[i], &list[j]);
+        }
+    }
+    swap(&list[i + 1], &list[high]);
+    
+    partition = i +1; 
+    
+
+        list = qsort2(list, low, partition- 1);
+        list = qsort2(list, partition + 1, high);
+  }
+    return list; 
+}
+
 
 int main() { 
 
@@ -203,42 +244,28 @@ int main() {
 
     //testing msort 
     std::cout << "Sorted vector:\n";
-    std::
+
+    std::vector<int> a = msort(v); 
  
     for (int i = 0; i < v.size(); i++) { 
-        std::cout << v[i] << std::endl; 
+        std::cout << a[i] << std::endl; 
     } 
 
+    //testing qsort2 
+    std::cout << "Quick Sorted vector:\n";
+     std::vector<int> b = qsort2(v, 0, v.size()-1);
 
+    for (int i = 0; i < v.size(); i++) { 
+        std::cout << b[i] << std::endl; 
+    } 
 
 }
 
 
-// int main()
-// {
-//   int size=20;
-//   int max_val=100;
-
-//   srand(time(nullptr));
-//   std::vector<int> a(size);
-//   int i;
-//   for (i=0;i<size; i++){
-//     a[i] = rand()%max_val;
-//   }
-//   
-//     print_vector(a);
-//   std::cout << "\n";
-//   a = ssort(a);
-//   print_vector(a);
-//   
-//   std::vector<int> left = {1,2,5,6,10,15};
-//   std::vector<int> right = {3,7,8,12,16,19,20};
-//   print_vector(left);
-//   print_vector(right);
-//   std::vector<int> m = merge(left,right);
-//   print_vector(m);
 
 
 
-//   return 0;
-// } 
+
+    
+
+  
