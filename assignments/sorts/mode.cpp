@@ -163,46 +163,35 @@ std::vector<int> msort(std::vector<int> v) {
     }
     
 }
-void swap(int* a, int* b) { 
-
-    int temp = *a;
-    *a = *b;
-    *b = temp;
-}
-std::vector<int> qsort2(std::vector<int> list, int low, int high) { 
-
-  if (low < high) { 
-    
-    int pivot = 0; 
-    int partition = 0; 
-    for (int i = 0; i < high-low; i++) { 
-    pivot += list[i]; 
-
-    }
-    pivot = pivot / list.size(); //pivot is average of the list 
-
-    //index of the smallest element of what we found so far 
-    int i = (low - 1); 
- 
-    for (int j = low; j <= high - 1; j++) {
-    
-        
-        if (list[j] < pivot) { 
-        
-            i++; 
-            swap(&list[i], &list[j]);
+//source : classmate, Ellen Avrumova 
+void qsort2(std::vector<int> &list, int low, int high) {
+    if(low < high) {
+        int pivotIndex = low + (high - low) / 2;
+        int pivotValue = list[pivotIndex];
+        int i = low, j = high;
+        int temp;
+        while(i <= j) {
+            while(list[i] < pivotValue) {
+                i++;
+            }
+            while(list[j] > pivotValue) {
+                j--;
+            }
+            if(i <= j) {
+                temp = list[i];
+                list[i] = list[j];
+                list[j] = temp;
+                i++;
+                j--;
+            }
         }
-    }
-    swap(&list[i + 1], &list[high]);
-    
-    partition = i +1; 
-    
+        int partition = i;
 
-        list = qsort2(list, low, partition- 1);
-        list = qsort2(list, partition + 1, high);
-  }
-    return list; 
+        qsort2(list, low, partition - 1);
+        qsort2(list, partition, high);
+    }
 }
+
 
 
 int main() { 
@@ -253,19 +242,11 @@ int main() {
 
     //testing qsort2 
     std::cout << "Quick Sorted vector:\n";
-     std::vector<int> b = qsort2(v, 0, v.size()-1);
+    qsort2(v, 0, v.size()-1);
 
     for (int i = 0; i < v.size(); i++) { 
-        std::cout << b[i] << std::endl; 
+        std::cout << v[i] << std::endl; 
     } 
 
 }
-
-
-
-
-
-
-    
-
-  
+ 

@@ -1,0 +1,8 @@
+I learned that choosing a pivot for quick sort algorithms does indeed, matter. "Good" pivots are
+pivots are avoided as the first or last element of the list. Always choosing the start and end of a list
+results in a potential for worst-case performance. Additionally, the pivot chosen impacts how fast the 
+quick sort runs. A better pivot, like the median or mean of the list is more preferred because it is partitions
+the list into two more equal parts, rather than having uneven left and right sides. Consequently, a better pivot
+leads to more efficient functions that take less memory and time to run. In choosing the pivot as the mean or median, 
+the partitioning is more effective as well as proficient. Despite both pivots succesfully sorting the list, the quickest sort
+would be more ideal. 
