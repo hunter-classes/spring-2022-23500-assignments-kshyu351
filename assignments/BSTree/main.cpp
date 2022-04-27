@@ -1,6 +1,8 @@
 #include <iostream>
 #include "Node.h"
 #include "Node.cpp"
+#include "BSTree.h"
+#include "BSTree.cpp"
 
 
 int main() { 
@@ -28,5 +30,14 @@ int main() {
     std::cout << root->getRight()->getLeft()->getData() << std::endl; 
     p2->setRight(c4);
     std::cout << root->getRight()->getRight()->getData() << std::endl; 
+
+    BSTree *t = new BSTree();
+    t->setup();
+
+    //teting get_debug_string() to see if it prints the value of the root 
+    std::cout <<t->get_debug_string() << std::endl;
+
+    
+
 
 }
