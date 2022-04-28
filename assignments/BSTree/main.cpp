@@ -31,13 +31,20 @@ int main() {
     p2->setRight(c4);
     std::cout << root->getRight()->getRight()->getData() << std::endl; 
 
-    BSTree *t = new BSTree();
-    t->setup();
+    // BSTree *t = new BSTree();
+    // t->setup();
 
     //teting get_debug_string() to see if it prints the value of the root 
-    std::cout <<t->get_debug_string() << std::endl;
+   // std::cout << t->get_debug_string() << std::endl;
 
-    
+
+  BSTree *t = new BSTree();
+  t->setup();
+
+    std::cout << std::endl; 
+    std::cout << "Printing out all the nodes in order from root, left subtree, then right subtree: " << std::endl;
+  std::cout <<  t->get_debug_string() << "\n";
+
 
 
 }
