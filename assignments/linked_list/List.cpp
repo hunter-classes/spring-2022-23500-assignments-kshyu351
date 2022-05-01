@@ -34,33 +34,49 @@ std::string List::toString() {
     return s;  
 }
 
-void List::locate(int index, Node *n) { //same as insert 
+// void List::locate(int index, Node *n) { //same as insert 
 
-    //how come locate(0,n) gives error ? 
+//     //how come locate(0,n) gives error ? 
 
-    if (index == 0) { 
-        //what zman wrote in class 
-        //throw std::out_of_range("out of range"); 
+//     if (index == 0) { 
+//         //what zman wrote in class 
+//         //throw std::out_of_range("out of range"); 
 
-        std::cout << head << ":" << n << "\n";
-        n->setNext(head); 
-        head = n; 
+//         std::cout << head << ":" << n << "\n";
+//         n->setNext(head); 
+//         head = n; 
+//     }
+//     else { 
+//         //locates the node referred to by the index 
+//         Node *walker = head; 
+//         for (int i = 0; i < index; i++) { 
+//             walker = walker->getNext(); 
+//         }
+
+//         //creates new node to store the earlier heads that were inserted first 
+//         Node *head2 = walker->getNext();
+
+//         //inserts the new node 
+//         walker->setNext(n);
+
+//         //puts in old heads in new node 
+//         n->setNext(head2);
+//     }
+// }
+
+int List::locate(int index) {
+    
+    Node *walker = head;
+
+    while(walker != nullptr && index > 0) {
+        walker = walker->getNext();
+        index--;
     }
-    else { 
-        //locates the node referred to by the index 
-        Node *walker = head; 
-        for (int i = 0; i < index; i++) { 
-            walker = walker->getNext(); 
-        }
-
-        //creates new node to store the earlier heads that were inserted first 
-        Node *head2 = walker->getNext();
-
-        //inserts the new node 
-        walker->setNext(n);
-
-        //puts in old heads in new node 
-        n->setNext(head2);
+    if(walker) {
+        return walker->getData();
+    }
+    else {
+        return INT_MIN;
     }
 }
 
