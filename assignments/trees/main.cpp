@@ -49,14 +49,48 @@ int main() {
   
 
   try {
-    int x  = t->rsearch(11);
-    std::cout << "Found: " << std::to_string(x) << "\n";
+    int x  = t->rsearch(5);
+    std::cout << std::to_string(x) << " is in the tree" "\n";
   } 
 
   catch (int e) {
-    std::cout << "11" << " not found\n";
+    std::cout << "5 is not in the tree\n";
+
+ }
+
+  try {
+    int x  = t->rsearch(10);
+    std::cout << "10 is in the tree\n";
+  
+  } 
+
+  catch (int e) {
+    std::cout << "10 is not in the tree\n";
 
   }
+
+  try {
+    int x  = t->rsearch(-10);
+    std::cout << "-10 is in the tree\n";
+  
+  } 
+
+  catch (int e) {
+    std::cout << "-10 is not in the tree\n";
+
+  }
+
+  try {
+    int x  = t->rsearch(7);
+    std::cout << "7 is in the tree\n";
+  
+  } 
+
+  catch (int e) {
+    std::cout << "7 is not in the tree\n";
+
+  }
+  
 
 
 

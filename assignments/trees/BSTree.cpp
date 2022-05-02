@@ -40,14 +40,21 @@ std::string BSTree::get_debug_string() {
 
 
 void BSTree::setup() {
-    Node *n = new Node(10);
+    Node *n = new Node(7);
     root = n;
-    n = new Node(20);
+    n = new Node(5);
     root->setLeft(n);
-    n = new Node(30);
+    n = new Node(9);
     root->setRight(n);
-    n = new Node(40);
+    n = new Node(3);
     root->getLeft()->setLeft(n);
+     n = new Node(6);
+    root->getLeft()->setRight(n);
+     n = new Node(8);
+    root->getRight()->setLeft(n);
+     n = new Node(10);
+    root->getRight()->setRight(n);
+
 
  
 }
@@ -55,25 +62,26 @@ void BSTree::setup() {
 
 int BSTree::rsearch(int value, Node *n) {
 
+    if(n == nullptr) { 
+        throw 1; 
+    }
     int nval = n->getData(); 
 
-    if(n == nullptr) { 
-        throw "error"; 
-    }
-    else if(n->getData() == value) { 
+    if(nval == value) { 
         return value;
     }
-
-    else if (value < nval) { 
-        n = n->getLeft(); 
-        rsearch(value, n); 
-    }
-    else { 
-        n = n->getRight(); 
-        rsearch(value, n);  
-    }
-    throw "error";
     
+    else if (value < nval) { 
+       n = n->getLeft(); 
+       return rsearch(value, n); 
+    }
+
+    else if (value > nval) { 
+        n = n->getRight(); 
+        return rsearch(value, n);   
+    }
+    throw 1; 
+   
 }
 
 int BSTree::rsearch(int value) {
@@ -81,4 +89,39 @@ int BSTree::rsearch(int value) {
    return rsearch(value,root);
 
 }
+
+int BSTree::search(int value){
+  Node *t = root;
+
+  while (t != nullptr){
+    int tval = t->getData();
+    if (tval==value){
+      // here we'd really return a full object
+      // with all the stuff associated with value
+      // not just an int
+      return value;
+    }
+
+    if (tval < value){
+      t = t->getRight();
+    } else {
+      t = t->getLeft();
+    }
+    
+  }
+
+  // if we get here then the value isn't
+  // in the tree
+
+  // normally, if we had a tree of objects
+  // we could return null but since we only have
+  // an int, we can't return an int to represent
+  // not found so we'll throw an exception
+
+  throw 1; // we should define our exceptions.
+
+    
+  
+}
+
 
