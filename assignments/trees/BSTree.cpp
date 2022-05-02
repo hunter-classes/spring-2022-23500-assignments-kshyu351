@@ -124,4 +124,40 @@ int BSTree::search(int value){
   
 }
 
+// we will always insert new nodes as leaves
+void BSTree::insert(int value) {
+     Node *newnode = new Node(value);
 
+  Node *p = root;
+  Node *trailer;
+
+  
+
+  if (trailer == nullptr) { 
+      break; 
+  }
+  trailer = p;
+  else if (p->getData() < value) { 
+        insert(p->getLeft())); 
+
+  }
+    else if (p->getData() > value) { 
+        insert(p->getRight()); 
+
+  }
+ if (root==nullptr){
+    root=newnode;
+  } else {
+    // trailer points to the node ABOVE where the new node
+    // will go.
+    // we have to figure out if newnode goes on the
+    // left of trailer or on the right of trailer
+    if (trailer->getData() < value){
+      trailer->setRight(newnode);
+    } else {
+      trailer->setLeft(newnode);
+    }
+
+  }
+}
+  

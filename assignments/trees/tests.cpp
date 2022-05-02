@@ -18,3 +18,4 @@ TEST_CASE("testing rsearch") {
     CHECK_THROWS(t->rsearch(-10)); 
     CHECK_THROWS(t->rsearch(99)); 
 }
+
