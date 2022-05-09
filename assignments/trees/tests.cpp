@@ -18,4 +18,19 @@ TEST_CASE("testing rsearch") {
     CHECK_THROWS(t->rsearch(-10)); 
     CHECK_THROWS(t->rsearch(99)); 
 }
+TEST_CASE("testing delete") {
+
+  BSTree *t = new BSTree();
+  t->setup();
+    t->deleteNode(6);
+    CHECK(t->get_debug_string() == "7\n5\n3\n9\n8\n10\n");
+    t->deleteNode(10);
+    CHECK(t->get_debug_string() == "7\n5\n3\n9\n8\n");
+}
+
+
+
+
+
+
 

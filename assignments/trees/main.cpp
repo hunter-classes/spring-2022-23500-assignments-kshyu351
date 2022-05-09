@@ -90,6 +90,20 @@ int main() {
     std::cout << "7 is not in the tree\n";
 
   }
+
+  // t->deleteNode(7);
+  // std::cout <<  t->get_debug_string() << "\n";
+  BSTree *t2 = new BSTree();
+   t2->setup();
+  // std::cout << t2->get_debug_string() << std::endl;
+   t2->deleteNode(6);
+   std::cout << t2->get_debug_string() << std::endl;
+     t2->deleteNode(10);
+     std::cout << t2->get_debug_string() << std::endl;
+
+
+
+
   
 
 

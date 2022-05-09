@@ -17,4 +17,7 @@ class BSTree {
         int rsearch(int value, Node *n); 
         int rsearch(int value);
         int search(int value); 
+        void deleteNode(int value);
+
+
 };
