@@ -96,10 +96,27 @@ int main() {
   BSTree *t2 = new BSTree();
    t2->setup();
   // std::cout << t2->get_debug_string() << std::endl;
-   t2->deleteNode(6);
+   t2->deleteNode(5);
    std::cout << t2->get_debug_string() << std::endl;
-     t2->deleteNode(10);
-     std::cout << t2->get_debug_string() << std::endl;
+  
+  //doesnt work for root 
+ // t2->deleteNode(7);
+
+ t2->deleteNode(3);
+
+
+   std::cout << t2->get_debug_string() << std::endl;
+
+  
+  t2->deleteNode(9);
+   std::cout << t2->get_debug_string() << std::endl;
+  //   t2->deleteNode(7);
+  //  std::cout << t2->get_debug_string() << std::endl;
+  
+
+
+   
+    
 
 
 

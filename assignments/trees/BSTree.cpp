@@ -184,8 +184,9 @@ void BSTree::deleteNode(int value) {
     } 
 
     else if (w->getData() > value) {
-      w = w->getLeft();
       tail = w;
+      w = w->getLeft();
+      
     
     }
   }
@@ -229,6 +230,7 @@ void BSTree::deleteNode(int value) {
           if (w->getData() == tail->getData()) { 
             //std::cout << "hi" << std::endl;
             tail->setRight(w->getRight());
+            return; 
             //tail->getRight()->setData(w->getData());
 
             
@@ -241,61 +243,86 @@ void BSTree::deleteNode(int value) {
           else if (w->getData() < tail->getData()) {
             tail->setLeft(w->getLeft());
           }
+          else { 
+            tail->setRight(w->getLeft());
+          }
+
+          
        
         }
         else if (w->getLeft() == nullptr) {
           if (w->getData() > tail->getData()) { 
             tail->setRight(w->getRight());
+            return;
 
           }
           else if (w->getData() < tail->getData()) {
             tail->setLeft(w->getRight());
+            return; 
           }
          
         }
+
       }
 
 
       //if it has 2 children 
       //largest member of left subtree
       else if (((w->getRight() != nullptr) && (w->getLeft()) != nullptr)) { 
+
+       
       
          Node *max = w->getLeft(); 
-          while (max != nullptr) { 
+          while (max->getRight() != nullptr) { 
             max = max->getRight(); 
           } 
       
         //if node to be deleted is left subtree
-        if (w->getData() < tail->getData()) { 
-          std::cout << "test\n";
-
-         
-           tail->getLeft()->setData(max->getData());
-           max = nullptr;;
-           delete max; 
-
-           std::cout << "test\n";
-   
+        if ((w->getData() < tail->getData())) { 
         
+        
+         max->setRight(w->getRight());
+        
+          
+           tail->setLeft(max);
+           
+
+            delete max;
+           max = nullptr;
+          
+         
         }
         else if (w->getData() > tail->getData()) { 
-         
-          tail->getRight()->setData(max->getData());
-           max = nullptr;;
-           delete max;
-
-      
-
-          std::cout << "test\n";
         
+          std::cout << "test2222\n";
+
+          max->setRight(w->getRight());
+    
+          
+           tail->setRight(max);
+          
+
+          //   delete max;
+          //  max = nullptr;
+           
+        }
+        else { 
+          std::cout << "k\n";
+    
+          
+
+           root->setData(max->getData()); 
+          // root->setRight()
+           w->setRight(nullptr); 
+           
+           
+            
+
         }
       }
 
-       tail= nullptr;
-          delete tail;
-          return;
-
-          
+      
+     
 }
 
 

@@ -26,6 +26,10 @@ TEST_CASE("testing delete") {
     CHECK(t->get_debug_string() == "7\n5\n3\n9\n8\n10\n");
     t->deleteNode(10);
     CHECK(t->get_debug_string() == "7\n5\n3\n9\n8\n");
+    t->deleteNode(5);
+    CHECK(t->get_debug_string() == "7\n3\n9\n8\n");
+     t->deleteNode(9);
+     CHECK(t->get_debug_string() == "7\n3\n8\n");
 }
 
 
