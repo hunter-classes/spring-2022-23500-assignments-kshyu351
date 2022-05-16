@@ -356,10 +356,17 @@ int BSTree::countHeight() {
 }
 
 int countSumHelper(int level,Node* current){
-  if(level < 0) return -1;
-  if(level == 0){
-    if(current == nullptr) return 0;
-    else return current->getData();
+  if(level < 0) { 
+    return -1;
+  }
+  if(level == 0) {
+    if(current == nullptr) { 
+      return 0;
+
+    } 
+    else { 
+      return current->getData();
+    }
   }
   else return countSumHelper(level-1,current->getLeft()) + countSumHelper(level-1,current->getRight());
 }
