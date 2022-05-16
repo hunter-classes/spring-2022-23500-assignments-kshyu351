@@ -7,6 +7,30 @@ BSTree::BSTree() {
     root = nullptr; 
 }
 
+// we will always insert new nodes as leaves
+void insertHelper(int value, Node* current){
+  if(value > current->getData()){
+    if(current->getRight() == nullptr){
+      current->setRight(new Node(value));
+    }
+    else return insertHelper(value,current->getRight());
+  }
+  else if (value < current->getData()){
+    if(current->getLeft() == nullptr){
+      current->setLeft(new Node(value));
+    }
+    else return insertHelper(value,current->getLeft());
+  }
+}
+
+void BSTree::insert(int value) {
+  if(root == nullptr){
+    root = new Node(value);
+  }
+  else return insertHelper(value,root);
+
+}
+
 std::string BSTree::get_debug_string_helper(Node *n) { 
 
   
@@ -23,7 +47,6 @@ std::string BSTree::get_debug_string_helper(Node *n) {
          
     return  r+"\n"+left+right; 
 
-
 }
 
 std::string BSTree::get_debug_string() { 
@@ -35,8 +58,6 @@ std::string BSTree::get_debug_string() {
     }
    
 }
-
-
 
 
 void BSTree::setup() {
@@ -54,9 +75,10 @@ void BSTree::setup() {
     root->getRight()->setLeft(n);
      n = new Node(10);
     root->getRight()->setRight(n);
+    insert(15);
+    insert(16);
 
 
- 
 }
 
 
@@ -90,7 +112,7 @@ int BSTree::rsearch(int value) {
 
 }
 
-int BSTree::search(int value){
+Node* BSTree::search(int value){
   Node *t = root;
 
   while (t != nullptr){
@@ -99,7 +121,7 @@ int BSTree::search(int value){
       // here we'd really return a full object
       // with all the stuff associated with value
       // not just an int
-      return value;
+      return t;
     }
 
     if (tval < value){
@@ -122,47 +144,6 @@ int BSTree::search(int value){
 
     
   
-}
-
-// we will always insert new nodes as leaves
-void BSTree::insert(int value) {
-     Node *newnode = new Node(value);
-
-  Node *p = root;
-  Node *trailer;
-
-  
-
-//   if (trailer == nullptr) { 
-//       break; 
-//   }
-
-//   trailer = p;
-
-//   else if (p->getData() < value) { 
-//         insert(p->getLeft())); 
-
-//   }
-//     else if (p->getData() > value) { 
-//         insert(p->getRight()); 
-
-//   }
-//  if (root==nullptr){
-//     root=newnode;
-//   } 
-//   else {
-//     // trailer points to the node ABOVE where the new node
-//     // will go.
-//     // we have to figure out if newnode goes on the
-//     // left of trailer or on the right of trailer
-//     if (trailer->getData() < value){
-//       trailer->setRight(newnode);
-//     } else {
-//       trailer->setLeft(newnode);
-//     }
-
-//   }
-
 }
 
 void BSTree::deleteNode(int value) { 
@@ -278,7 +259,24 @@ void BSTree::deleteNode(int value) {
           } 
       
         //if node to be deleted is left subtree
-        if ((w->getData() < tail->getData())) { 
+
+        if (tail == nullptr) {
+          std::cout << "root\n";
+          // max->setRight(w->getRight());
+          // root->setData(max->getData());
+          tail->setLeft(max);
+        }
+        
+
+
+        //   max->setRight(w->getRight());
+
+        // if (tail){
+        //   tail->setLeft(max);
+        // }
+          //tail->setRight(max);
+        
+         if ((w->getData() < tail->getData())) { 
         
         
          max->setRight(w->getRight());
@@ -293,8 +291,14 @@ void BSTree::deleteNode(int value) {
          
         }
         else if (w->getData() > tail->getData()) { 
+        //      if (tail == nullptr){
+        //   std::cout << "root\n";
+        //   // max->setRight(w->getRight());
+        //   // root->setData(max->getData());
+        //   tail->setLeft(max);
+        // }
         
-          std::cout << "test2222\n";
+          // std::cout << "test2222\n";
 
           max->setRight(w->getRight());
     
@@ -306,23 +310,88 @@ void BSTree::deleteNode(int value) {
           //  max = nullptr;
            
         }
-        else { 
-          std::cout << "k\n";
     
-          
-
-           root->setData(max->getData()); 
-          // root->setRight()
-           w->setRight(nullptr); 
-           
-           
-            
-
-        }
       }
 
-      
-     
+}
+
+
+
+int countLeavesHelper(Node* current)   {
+    if (current == nullptr) { 
+    return 0;
+  }
+  if ((current->getRight() == nullptr) && (current->getLeft() == nullptr)) { 
+    return 1; 
+  }
+  else { 
+    return countLeavesHelper(current->getRight()) + countLeavesHelper(current->getLeft());
+  }
+}
+    
+
+int BSTree::countLeaves() { 
+  return countLeavesHelper(root);
+  
+}
+
+
+int countHeightHelper(Node* current){
+  if (current == nullptr) { 
+    return -1;
+  }
+  int left = countHeightHelper(current->getLeft()); 
+  int right = countHeightHelper(current->getRight()); 
+
+  if (left < right) { 
+    return right+1;
+  } 
+  else { 
+    return left+1; 
+  }
+}
+
+int BSTree::countHeight() { 
+  return countHeightHelper(root);
+}
+
+int countSumHelper(int level,Node* current){
+  if(level < 0) return -1;
+  if(level == 0){
+    if(current == nullptr) return 0;
+    else return current->getData();
+  }
+  else return countSumHelper(level-1,current->getLeft()) + countSumHelper(level-1,current->getRight());
+}
+
+int BSTree::countSum(int level) { 
+  return countSumHelper(level, root);
+}
+int getLevelHelper(int target, Node *current) { 
+  if (current == nullptr) { 
+    throw 1;
+  }
+  
+  if (current->getData() == target) { 
+    return 0;
+  }
+  else { 
+    if(current->getData() > target) {
+      return 1 + getLevelHelper(target,current->getLeft());
+    }
+    else { 
+      return 1 + getLevelHelper(target,current->getRight());
+    }
+
+  }
+}
+
+int BSTree::getLevel(int target) {
+  return getLevelHelper(target, root);
+}
+
+bool BSTree::isCousins(int n, int m) { 
+  return getLevel(search(n)->getData()) == getLevel(search(m)->getData());
 }
 
 

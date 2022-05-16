@@ -16,8 +16,15 @@ class BSTree {
 
         int rsearch(int value, Node *n); 
         int rsearch(int value);
-        int search(int value); 
+        Node* search(int value); 
         void deleteNode(int value);
+
+        int countLeaves(); 
+       
+        int countHeight(); 
+        int countSum(int level); 
+        int getLevel(int target); 
+        bool isCousins(int n, int m);
 
 
 };
