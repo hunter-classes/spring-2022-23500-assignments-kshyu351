@@ -261,10 +261,18 @@ void BSTree::deleteNode(int value) {
         //if node to be deleted is left subtree
 
         if (tail == nullptr) {
-          std::cout << "root\n";
+          
           // max->setRight(w->getRight());
           // root->setData(max->getData());
-          tail->setLeft(max);
+          Node *temp = tail; 
+
+          tail->setLeft(temp);
+          max = tail;
+           delete max;
+           max = nullptr;
+          
+
+          
         }
         
 
@@ -336,7 +344,7 @@ int BSTree::countLeaves() {
 }
 
 
-int countHeightHelper(Node* current){
+int countHeightHelper(Node* current) {
   if (current == nullptr) { 
     return -1;
   }
@@ -366,7 +374,7 @@ int countSumHelper(int level,Node* current){
     } 
     else { 
       return current->getData();
-    }
+  }
   }
   else return countSumHelper(level-1,current->getLeft()) + countSumHelper(level-1,current->getRight());
 }

@@ -99,7 +99,8 @@ int main() {
    t2->deleteNode(5);
    std::cout << t2->get_debug_string() << std::endl;
   
-  //doesnt work for root 
+  
+  
  t2->deleteNode(7);
 
  t2->deleteNode(3);
@@ -110,13 +111,10 @@ int main() {
   
   t2->deleteNode(9);
    std::cout << t2->get_debug_string() << std::endl;
+   std::cout << "root\n";
     t2->deleteNode(7);
    std::cout << t2->get_debug_string() << std::endl;
 
-std::cout << "testing insert\n";
-BSTree *t3 = new BSTree();
-t3->setup();
-    std::cout << t3->get_debug_string() << std::endl;
 
 
   

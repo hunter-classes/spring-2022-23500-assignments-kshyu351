@@ -31,7 +31,10 @@ TEST_CASE("testing delete") {
     CHECK(t->get_debug_string() == "7\n3\n9\n8\n15\n16\n");
     t->deleteNode(9);
     CHECK(t->get_debug_string() == "7\n3\n8\n15\n16\n");
+    t->deleteNode(16);
+    CHECK(t->get_debug_string() == "7\n3\n8\n15\n");
 }
+
 
 TEST_CASE("testing getLevel") {
   BSTree *t = new BSTree();
