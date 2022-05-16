@@ -91,29 +91,24 @@ int main() {
 
   }
 
-  // t->deleteNode(7);
+
   // std::cout <<  t->get_debug_string() << "\n";
-  BSTree *t2 = new BSTree();
-   t2->setup();
-  // std::cout << t2->get_debug_string() << std::endl;
-   t2->deleteNode(5);
-   std::cout << t2->get_debug_string() << std::endl;
+//   BSTree *t2 = new BSTree();
+//    t2->setup();
+//   // std::cout << t2->get_debug_string() << std::endl;
+//    t2->deleteNode(5);
+//    std::cout << t2->get_debug_string() << std::endl;
   
-  
-  
- t2->deleteNode(7);
 
- t2->deleteNode(3);
+//  t2->deleteNode(3);
 
 
-   std::cout << t2->get_debug_string() << std::endl;
+//    std::cout << t2->get_debug_string() << std::endl;
 
   
-  t2->deleteNode(9);
-   std::cout << t2->get_debug_string() << std::endl;
-   std::cout << "root\n";
-    t2->deleteNode(7);
-   std::cout << t2->get_debug_string() << std::endl;
+//   t2->deleteNode(9);
+//    std::cout << t2->get_debug_string() << std::endl;
+   
 
 
 
