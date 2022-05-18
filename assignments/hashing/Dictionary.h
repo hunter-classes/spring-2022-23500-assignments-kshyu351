@@ -1,6 +1,5 @@
 #pragma once 
 #include "Person.h"
-#include "ONode.h"
 #include "OList.h"
 
 #include <iostream>
@@ -8,13 +7,13 @@
 class Dictionary {
  private:
     
-    OList* hashTable[100]; 
+    OList* hashTable[10]; 
 
  public:
     Dictionary(); 
     ~Dictionary(); 
     void insert(Person *p);  // A method to insert a new Person.
-    Person getPerson(std::string name); 
+    Person* retrievePerson(std::string name); 
     std::string getAllKeys(); 
     int getHash(std::string key); 
 

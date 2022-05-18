@@ -10,6 +10,8 @@ ONode::ONode(Person *p){
     this->next = nullptr;
 }
 
+
+
 ONode::ONode(Person *p, ONode *next){
     this->p = p;
     this->next = next;
@@ -23,7 +25,7 @@ void ONode::setNext (ONode *next){
     this->next = next;
 }
 
-Person* ONode::getPerson(){
+Person *ONode::getPerson(){
     return this->p;
 }
 

@@ -3,19 +3,26 @@
 
 
 OList::OList() { 
-    head = nullptr; 
+    head = nullptr;
+    size = 0; 
 }
 
 OList::~OList() { 
+     ONode *walker = head;
+     head = nullptr; 
      ONode *trailer;
     
  
-  while(head != nullptr){
+  while(walker != nullptr){
     trailer = head;
-    head = head->getNext();
+    walker = walker->getNext();
     delete trailer;
   }
   
+}
+
+ONode* OList::getHead() { 
+    return this->head; 
 }
 
 void OList::insert(Person *p) { //insert a new node with value into the list in its proper location.
@@ -62,11 +69,11 @@ void OList::insert(Person *p) { //insert a new node with value into the list in 
 std::string OList::toString() { //return a string representation of the full list.
 
     ONode *walker = head; 
-    std::string s = "head-->"; 
+    std::string s = ""; 
 
     while (walker != nullptr) { 
       
-        s = s+ std::to_string(walker->getData()) + "-->"; 
+        s = s+ walker->getPerson()->get_name() + "-->"; 
         walker = walker->getNext(); 
     }
 
@@ -75,29 +82,39 @@ std::string OList::toString() { //return a string representation of the full lis
 
 } 
 
-bool OList::contains(int n) {  // returns true if value is in the list, false otherwise.
+// bool OList::contains(int n) {  // returns true if value is in the list, false otherwise.
 
-    // ONode* temp = head;
-    // while(temp != nullptr) {
-    //     if (temp->getData() == n) { 
-    //         return true;
-    //     }
-    //     else { 
-    //         temp = temp->getNext();
-    //     }
-    // }
-    return false; 
-} 
+//     // ONode* temp = head;
+//     // while(temp != nullptr) {
+//     //     if (temp->getData() == n) { 
+//     //         return true;
+//     //     }
+//     //     else { 
+//     //         temp = temp->getNext();
+//     //     }
+//     // }
+//     return false; 
+// } 
 
 
-int OList::get(int loc) {  //returns the value at loc
+void OList::get(int loc, Person *p) {  //returns the value at loc
 
-    ONode *walker = head; 
+   ONode *walker = head;
+   ONode *Node = new ONode(p);
 
-    for (int i = 0; i < loc; i++) { 
-        walker = walker->getNext();  
-    } 
-    return walker->getData(); 
+   if(loc == 0){
+       Node->setNext(head);
+       head = Node;
+   }
+   while (walker != nullptr && loc > 1)
+   {
+       walker = walker->getNext();
+       loc-=1;
+   }
+
+   Node->setNext(walker->getNext());
+   walker->setNext(Node);
+   
 
 }
 
@@ -124,23 +141,23 @@ void OList::remove(int loc) {
     walker->setNext(head2);
 } 
 
-void OList::reverse() {  //This should “reverse” the list - that is reverse the pointers. 
+// void OList::reverse() {  //This should “reverse” the list - that is reverse the pointers. 
 
-    if(head == nullptr || head->getNext() == nullptr){
-        return;
-    }
+//     if(head == nullptr || head->getNext() == nullptr){
+//         return;
+//     }
 
-    ONode *walker = head;
-    ONode *reverseWalker = nullptr; 
-    ONode *temp = nullptr;
+//     ONode *walker = head;
+//     ONode *reverseWalker = nullptr; 
+//     ONode *temp = nullptr;
 
-    while (walker != nullptr) { 
+//     while (walker != nullptr) { 
 
-        temp = walker->getNext();
-        walker->setNext(reverseWalker);
-        reverseWalker = walker;
-        walker = temp;
+//         temp = walker->getNext();
+//         walker->setNext(reverseWalker);
+//         reverseWalker = walker;
+//         walker = temp;
 
-    }
-    head = reverseWalker; 
-}
+//     }
+//     head = reverseWalker; 
+// }

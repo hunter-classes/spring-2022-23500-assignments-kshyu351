@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include "Person.h"
 
 class ONode {
@@ -15,5 +16,6 @@ class ONode {
         void setNext(ONode *next);
 
         Person* getPerson();
-        ONode *getNext()
+        ONode *getNext();
+       
 };

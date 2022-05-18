@@ -4,42 +4,43 @@
   
 
 Dictionary::Dictionary() { 
-    for (int i = 0; i < 100; i++) { 
-        hashTable[i] = new List(); 
+    for (int i = 0; i < 10; i++) { 
+        hashTable[i] = new OList(); 
     }
 }
 
 Dictionary::~Dictionary(){ 
-    delete[] hashTable; 
+     for (int i = 0; i < 10; i++) { 
+        delete hashTable[i];
+    }
 }
 
 
 
 void Dictionary::insert(Person *p) {  // A method to insert a new Person.
     int index = getHash(p->get_name()); 
-    if (hashTable[index] == nullptr) { 
-        hashTable[index]->insert(p);
-    }
-    //linear probing???
-    else { 
-      
-        while(index != 100) { 
-            if (hashTable[index] == nullptr) { 
-                hashTable[index]->insert(p);
-            }
-            if (index == 99) { 
-                index = 0; 
-            }
-            index++;
-        }
-    }
+    hashTable[index]->insert(p);
 }
 
-Person Dictionary::getPerson(std::string name) { 
+Person* Dictionary::retrievePerson(std::string name) { 
     int index = getHash(name); 
     // get param??
+    int location = 0;
+ //   std::cout<<index<<std::endl; 
+    OList *list = hashTable[index];
+    std::cout<<list->toString()<<std::endl; 
+    ONode *n = list->getHead(); 
 
-    return hashTable[index]->get(0);
+    while (n != nullptr) { 
+        if(n->getPerson()->get_name() == name) { 
+            return n->getPerson();
+        }
+        n = n->getNext();
+
+    }
+    return nullptr; 
+
+   // return hashTable[index]->get(0);
 } 
 
 int Dictionary::getHash(std::string key) { 
@@ -50,7 +51,7 @@ int Dictionary::getHash(std::string key) {
         sum += (int)key[i]; 
     }
 
-    hash = sum % 100;
+    hash = sum % 10;
 
     return hash; 
 }
@@ -58,8 +59,9 @@ int Dictionary::getHash(std::string key) {
 std::string Dictionary::getAllKeys() { 
 
     std::string keys = ""; 
-    for (int i = 0; i < 100; i++) { 
-        keys = keys + std::to_string(hashTable[i]) + "\n";  
+    for (int i = 0; i < 10; i++) { 
+        keys += hashTable[i]->toString(); 
+        keys += ", ";  
     }
     return keys;
 }
