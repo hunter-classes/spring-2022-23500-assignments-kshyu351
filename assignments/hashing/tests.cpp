@@ -2,30 +2,65 @@
 #include "doctest.h"
 #include "Dictionary.h"
 
-TEST_CASE("Dictionary"){
-  Dictionary *myDict = new Dictionary();
-  SUBCASE("Insertion and Getting All Keys"){    
-    Person *eric = new Person("Eric", "Li", 0);
-    Person *john = new Person("John", "Adam", 1);
-    myDict->insert(eric);
-    myDict->insert(john);
-    CHECK(myDict->getAllKeys() == "Li, Eric-->nullptr, Adam, John-->nullptr, ");
-  }
+TEST_CASE("testing insert and getAllKeys") {
+  Dictionary *d = new Dictionary();
+   
+    Person *kir = new Person("Kirsten", "Shyu", 0);
+    Person *kass = new Person("Kassidy", "Shyu", 1);
+    Person *p3 = new Person("Max", "Shyu", 2); 
+    Person *p4 = new Person("Peter", "Shyu", 3); 
+    Person *p5 = new Person("Lillian", "Shyu", 4); 
+    d->insert(kir);
+    d->insert(kass);
+   
 
-//   SUBCASE("Retrieval"){
-//     Person *eric = new Person("Eric", "Li", 0);
-//     Person *john = new Person("John", "Adam", 1);
-//     Person *max = new Person("Max", "Stein", 2);
-//     CHECK(myDict->getPerson(max) == nullptr);
-//     CHECK(myDict->getPerson(eric) == nullptr);
-//     CHECK(myDict->getPerson(john) == nullptr);
-//     myDict->insert(max);
-//     myDict->insert(eric);
-//     myDict->insert(john);
-//     CHECK(myDict->getPerson(eric) == eric);
-//     CHECK(myDict->getPerson(john) == john);
-//     CHECK(myDict->getPerson(max) == max);
-//   }
+    CHECK(d->getAllKeys() == "Shyu, Kirsten-->nullptr, Shyu, Kassidy-->nullptr, ");
+    d->insert(p3);
+    d->insert(p4);
+    CHECK(d->getAllKeys() == "Shyu, Peter-->nullptr, Shyu, Max-->nullptr, Shyu, Kirsten-->nullptr, Shyu, Kassidy-->nullptr, "); 
+    d->insert(p5);
+    CHECK(d->getAllKeys() == "Shyu, Lillian-->nullptr, Shyu, Peter-->nullptr, Shyu, Max-->nullptr, Shyu, Kirsten-->nullptr, Shyu, Kassidy-->nullptr, ");
+  
+} 
+
+TEST_CASE("testing retrieval") {
+    Dictionary *d = new Dictionary();
+    Person *kir = new Person("Kirsten", "Shyu", 0);
+    Person *kass = new Person("Kassidy", "Shyu", 1);
+    Person *p3 = new Person("Max", "Shyu", 2); 
+    Person *p4 = new Person("Peter", "Shyu", 3); 
+    Person *p5 = new Person("Lillian", "Shyu", 4); 
+     d->insert(kir);
+    d->insert(kass);
+    CHECK(d->retrievePerson(kir->get_name()) == kir);
+    CHECK(d->retrievePerson(kass->get_name()) == kass);
+    CHECK(d->retrievePerson(p3->get_name()) == nullptr);
+    CHECK(d->retrievePerson(p4->get_name()) == nullptr);
+    CHECK(d->retrievePerson(p5->get_name()) == nullptr);
+       d->insert(p3);
+    d->insert(p4);
+      CHECK(d->retrievePerson(p3->get_name()) == p3);
+    CHECK(d->retrievePerson(p4->get_name()) == p4);
+
+}
+
+TEST_CASE("testing getHash") {
+     Dictionary *d = new Dictionary();
+    Person *kir = new Person("Kirsten", "Shyu", 0);
+    Person *kass = new Person("Kassidy", "Shyu", 1);
+    Person *p3 = new Person("Max", "Shyu", 2); 
+    Person *p4 = new Person("Peter", "Shyu", 3); 
+    Person *p5 = new Person("Lillian", "Shyu", 4); 
+
+    CHECK(d->getHash(kir->get_name()) == 7);
+    CHECK(d->getHash(kass->get_name()) == 9);
+    CHECK(d->getHash(p3->get_name()) == 5);
+    CHECK(d->getHash(p4->get_name()) == 3);
+    CHECK(d->getHash(p5->get_name()) == 0);
+
+
+
+  }
 
 //   SUBCASE("Hashing"){
 //     Person *carl = new Person("Carl", "Jar", 3);
@@ -38,10 +73,8 @@ TEST_CASE("Dictionary"){
 //     CHECK(myDict->hash(kadin, 20) == 13);
 //     CHECK(myDict->hash(coco, 20) == 10);
 //     CHECK(myDict->hash(tyler, 20) == 11);
-//   }
-}
+//   //}//
 
 
 
 
-    

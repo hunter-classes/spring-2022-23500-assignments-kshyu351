@@ -7,7 +7,7 @@
 class Dictionary {
  private:
     
-    OList* hashTable[10]; 
+    OList* hashTable[10];
 
  public:
     Dictionary(); 

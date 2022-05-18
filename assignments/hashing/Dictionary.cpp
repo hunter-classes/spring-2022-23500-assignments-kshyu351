@@ -60,8 +60,10 @@ std::string Dictionary::getAllKeys() {
 
     std::string keys = ""; 
     for (int i = 0; i < 10; i++) { 
-        keys += hashTable[i]->toString(); 
-        keys += ", ";  
+        if(hashTable[i]->toString() != "nullptr"){
+            keys += hashTable[i]->toString(); 
+            keys += ", ";  
+        }
     }
     return keys;
 }

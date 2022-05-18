@@ -31,4 +31,11 @@ int main() {
 
     std::cout << d->getAllKeys() << std::endl; 
 
+    std::cout << std::to_string(d->getHash(p->get_name())) << std::endl; 
+    std::cout << std::to_string(d->getHash(p2->get_name())) << std::endl; 
+    std::cout << std::to_string(d->getHash(p3->get_name())) << std::endl; 
+    std::cout << std::to_string(d->getHash(p4->get_name())) << std::endl; 
+    std::cout << std::to_string(d->getHash(p5->get_name())) << std::endl; 
+
+
 }
